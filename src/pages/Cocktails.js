@@ -1,7 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import { NavLink, useParams, useHistory } from "react-router-dom";
-import { Navbar } from "react-bootstrap";
+import {
+  Navbar,
+  Form,
+  Nav,
+  Button,
+  Container,
+  Row,
+  Col,
+  ButtonGroup,
+} from "react-bootstrap";
 
 export default function Cocktails() {
   const url = "https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list";
@@ -51,53 +60,86 @@ export default function Cocktails() {
 
   useEffect(() => {
     console.log("it is working");
-    search();
+    search(); // eslint-disable-next-line
   }, [routeParam]);
 
   return (
-    <div className="App">
-      <Navbar className="navbar">
-        <h1>Cocktails Categories</h1>
-        <input
-          placeholder="Search your cocktail"
-          value={searchText}
-          onChange={(e) => set_searchText(e.target.value)}
-        />
-
-        <button onClick={navigateToSearch}>Search</button>
+    <>
+      <Navbar
+        className="NavbarApp justify-content-between"
+        bg="light"
+        expand="lg"
+        style={{ maxHeight: 200 }}
+      >
+        <Nav className="navcocktailstop">COCKTAILS</Nav>
+        <Form>
+          <input
+            placeholder="Search your cocktail"
+            value={searchText}
+            onChange={(e) => set_searchText(e.target.value)}
+            className=" mr-sm-2"
+          />
+          <Button onClick={navigateToSearch} variant="outline-dark">
+            Search
+          </Button>
+        </Form>
       </Navbar>
-
-      {cocktails ? (
-        <ul className="cocktail">
-          {cocktails.map((cocktail, i) => {
-            return (
-              <li key={i}>
-                <NavLink
-                  className="navlink"
-                  exact
-                  to={`/categories/${cocktail.strCategory}`}
-                >
-                  {cocktail.strCategory}
-                </NavLink>
-              </li>
-            );
-          })}
-        </ul>
-      ) : (
-        <p></p>
-      )}
-
-      {dataCocktail ? (
-        dataCocktail.map((data, index) => {
-          return (
-            <ul key={index}>
-              <NavLink to={`/details/${data.idDrink}`}>{data.strDrink}</NavLink>
-            </ul>
-          );
-        })
-      ) : (
-        <p></p>
-      )}
-    </div>
+      <div>
+        <Container fluid>
+          <Row className=" justify-content-md-center ">
+            <Col xs lg="4">
+              {cocktails ? (
+                <div className="category list">
+                  <ButtonGroup vertical size="lg" className="mb-2">
+                    {cocktails.map((cocktail, i) => {
+                      return (
+                        <li key={i} className="category">
+                          <Button
+                            variant="outline-secondary"
+                            className="categoryButton"
+                          >
+                            <NavLink
+                              className="navlink category"
+                              exact
+                              to={`/categories/${cocktail.strCategory}`}
+                              style={{ textDecoration: "inherit" }}
+                            >
+                              {cocktail.strCategory}
+                            </NavLink>
+                          </Button>
+                        </li>
+                      );
+                    })}
+                  </ButtonGroup>
+                </div>
+              ) : (
+                <p></p>
+              )}
+            </Col>
+            <Col xs lg="8" className="colSearchCocktails">
+              <div className="divSearchCocktails">
+                {dataCocktail ? (
+                  dataCocktail.map((data, index) => {
+                    return (
+                      <ul key={index} className="searchcocktails">
+                        <NavLink
+                          to={`/details/${data.idDrink}`}
+                          className="linksearchcocktails"
+                          style={{ textDecoration: "inherit" }}
+                        >
+                          {data.strDrink}
+                        </NavLink>
+                      </ul>
+                    );
+                  })
+                ) : (
+                  <p></p>
+                )}
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+    </>
   );
 }

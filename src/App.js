@@ -8,7 +8,7 @@ import SearchCocktail from "./pages/SearchCocktail";
 
 export default function App() {
   return (
-    <div className="App">
+    <div>
       <Switch>
         <Route path="/categories/:strCategory" component={Categories} />
         <Route exact path="/" component={Cocktails} />
