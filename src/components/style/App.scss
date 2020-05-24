@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css?family=Alatsi|Patua+One&display=swap");
+@import "~bootstrap";
+//$primary: #006d80;
+//$secondary: #00a5bf;
+//$light: #e9edf3;
+//$text-color: #333;
+html,
+body {
+  background-image: url("https://wallpapermemory.com/uploads/489/cocktail-background-hd-1680x1050-242838.jpg");
+  // color: $text-color;
+  font-family: "Alatsi", serif;
+  font-size: 18px; // the "base size" = 1rem
+  line-height: 140%;
+  color: white;
+  // resets
+  margin: 0;
+  padding: 0;
+}
+
+.navlink.active {
+  color: darkred;
+}
+.navlink {
+  color: white;
+}
+
+.App {
+  // to center the app in the middle of the page
+  max-width: 70rem;
+  margin: 0 auto;
+
+  // but add some spacing above
+  margin-top: 3rem;
+  // horizontal (internal) spacing
+  padding: 0 3rem;
+
+  li {
+    height: 2rem;
+    list-style: none;
+    color: white;
+  }
+
+  h1 {
+    padding: 20px;
+    color: white;
+  }
+}
+
+p {
+  text-align: left;
+}
+
+.row {
+  background-color: white;
+  padding-top: 40px;
+  color: darkred;
+  text-align: center;
+  .namecocktail {
+    text-align: center;
+  }
+  .cocktail {
+    padding: 10px;
+  }
+}
+
+.DetailCocktails {
+  .details {
+    background-color: white;
+    color: black;
+  }
+}
+
+.cocktailcard {
+  color: black;
+  background-color: white;
+  padding: 10px;
+  width: fit-content;
+}
